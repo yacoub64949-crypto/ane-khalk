@@ -1,0 +1,130 @@
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+body {
+    background: transparent; /* مهم للـ OBS */
+    color: #fff;
+}
+
+/* ====== TOP BAR ====== */
+#top {
+    width: 360px;
+    margin: 20px auto;
+    padding: 14px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #0b0f1a, #141a2e);
+    box-shadow: 0 0 25px rgba(0,255,255,.25);
+}
+
+/* NO MINIMUM */
+#minimum {
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    background: #0a0;
+    color: #caffca;
+    box-shadow: 0 0 15px rgba(0,255,0,.6);
+}
+
+/* SNIPING */
+#snipe {
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    background: #900;
+    color: #ffb3b3;
+    box-shadow: 0 0 18px rgba(255,0,0,.8);
+}
+
+/* TIMER */
+#timer {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #2bff88;
+    text-shadow: 0 0 18px rgba(43,255,136,.9);
+}
+
+/* ====== LEADER CARD ====== */
+#leader {
+    width: 360px;
+    margin: 20px auto;
+    padding: 16px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #10172e, #0c1224);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 0 25px rgba(0,150,255,.35);
+}
+
+/* AVATAR */
+#avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #2bff88;
+    box-shadow: 0 0 15px rgba(43,255,136,.8);
+}
+
+/* NAME */
+#name {
+    flex: 1;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,.6);
+}
+
+/* COINS */
+#coins {
+    font-size: 18px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(255,204,0,.9);
+}
+
+/* ====== ANIMATION ====== */
+.flash {
+    animation: flashGlow .5s ease;
+}
+
+@keyframes flashGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(0,255,255,0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(0,255,255,1);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(0,150,255,.35);
+        transform: scale(1);
+    }
+}
+
+/* ====== WINNER ====== */
+.winner {
+    border: 3px solid gold;
+    box-shadow: 0 0 40px gold;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 420px) {
+    #top, #leader {
+        width: 95%;
+    }
+}

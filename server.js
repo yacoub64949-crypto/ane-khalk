@@ -10,9 +10,7 @@ app.use(cors());
 app.use(express.static("public"));
 
 const server = http.createServer(app);
-const io = new Server(server, {
-    cors: { origin: "*" }
-});
+const io = new Server(server, { cors: { origin: "*" } });
 
 // ====== متغيرات المزاد ======
 let tiktok = null;
@@ -25,12 +23,23 @@ let minBid = 1;
 let leader = null;
 let userTotals = {};
 
+// ⚡ قائمة الأسماء المسموح بها
+const ALLOWED_USERS = ["elyas1121", "gjhg644"];
+
 // ====== Socket.IO ======
 io.on("connection", socket => {
     console.log("🟢 Client connected:", socket.id);
 
     // ====== الاتصال بتيك توك ======
     socket.on("connect_tiktok", username => {
+
+        // تحقق من الاسم المسموح به
+        if (!ALLOWED_USERS.includes(username)) {
+            socket.emit("status", "❌ هذا الاسم غير مسموح");
+            console.log("❌ Attempt to connect with invalid name:", username);
+            return;
+        }
+
         console.log("🔗 Connecting to TikTok:", username);
 
         if (tiktok) {
@@ -52,7 +61,7 @@ io.on("connection", socket => {
                 socket.emit("status", "❌ Failed to connect TikTok");
             });
 
-        // ====== استقبال الهدايا (الحل النهائي) ======
+        // ====== استقبال الهدايا ======
         tiktok.on("gift", data => {
             if (!auctionRunning) return;
 
@@ -65,7 +74,6 @@ io.on("connection", socket => {
 
             const giftValue = data.diamondCount || 0;
             const count = data.repeatCount || 1;
-
             const totalCoins = giftValue * count;
             if (totalCoins < minBid) return;
 
